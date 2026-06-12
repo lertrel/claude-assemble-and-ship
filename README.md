@@ -1,34 +1,39 @@
-# Build your first plugin
-
-This repo is your workspace for the **Unit 9, Lesson 3** task: package some of your own course work into a working Claude Code plugin, then test it locally.
-
-## What to build
-
-A plugin that bundles **at least two different kinds of component** you've already made — for example, a command from Unit 7 and the subagent you built in Unit 8.
-
-## Target structure
-
+## Build your first plugin
+ 
+This is your workspace for the **Unit 9, Lesson 3** task: assemble a couple of components into a working Claude Code plugin and test it locally.
+ 
+### What's in here
+ 
+Two ready-made components live in `building-blocks/`:
+ 
+- `summarize-changes.md` — a slash command that summarises what changed on a branch
+- `code-reviewer.md` — a subagent that reviews recent changes
+Your job is to organise them into a proper plugin. (Made your own command or subagent earlier in the course? Use those instead — the steps are the same.)
+ 
+### Target structure
+ 
 ```
 .
 ├── .claude-plugin/
-│   └── plugin.json        # name + version (the manifest)
-├── commands/              # your slash commands (.md)
-├── agents/                # your subagents (.md)
-└── README.md              # what your plugin does
+│   └── plugin.json            # name + version (the manifest)
+├── commands/
+│   └── summarize-changes.md
+├── agents/
+│   └── code-reviewer.md
+└── README.md                  # what your plugin does
 ```
-
-Only create the folders you actually use. Remember the one rule that trips people up: **only `plugin.json` goes inside `.claude-plugin/`** — the component folders sit at the root.
-
-## Steps
-
+ 
+Remember the one rule that trips people up: **only `plugin.json` goes inside `.claude-plugin/`** — the component folders sit at the root.
+ 
+### Steps
+ 
 1. Create `.claude-plugin/plugin.json` with a `name` and a `version`.
-2. Add the component folders you need (`commands/`, `agents/`, …) and move at least two different kinds of component into them.
-3. If a hook or command runs a bundled script, reference it through `${CLAUDE_PLUGIN_ROOT}` — never a hardcoded path.
+2. Make the component folders and move the pieces into place: `building-blocks/summarize-changes.md` → `commands/`, and `building-blocks/code-reviewer.md` → `agents/`. Delete the empty `building-blocks/` folder afterwards.
+3. If a component runs a bundled script, reference it through `${CLAUDE_PLUGIN_ROOT}` — never a hardcoded path.
 4. Replace this README with one that describes *your* plugin: what it does, the commands it adds, how to use them.
-5. From the repo root, load it locally with `claude --plugin-dir .`, then run each piece by its namespaced name (`/your-plugin:its-name`). Use `/reload-plugins` after edits.
+5. From the repo root, load it with `claude --plugin-dir .`. Run the command as `/your-plugin:summarize-changes`, and trigger the subagent by asking Claude to review your recent changes (it should reach for `code-reviewer`). Use `/reload-plugins` after edits.
 6. Commit and push.
-
-## Done when
-
-- `claude --plugin-dir .` loads the plugin and every piece runs by its namespaced name.
-- The repo holds a valid `.claude-plugin/plugin.json`, your component folders, and a README describing the plugin.
+### Done when
+ 
+- `claude --plugin-dir .` loads the plugin, the command runs by its namespaced name, and the reviewer subagent fires when you ask for a review.
+- The repo holds a valid `.claude-plugin/plugin.json`, the `commands/` and `agents/` folders, and a README describing the plugin.
