@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Purpose
 
-This is a learning workspace for assembling a Claude Code plugin from pre-made components. The goal is to move the building blocks into the correct plugin directory structure and verify the CI validation passes.
+This repo is a Claude Code plugin (qa-kit) assembled from pre-made components. The plugin adds a summarize-changes command and a code-reviewer subagent.
 
 ## Validation
 
@@ -41,5 +41,4 @@ Component folders (`commands/`, `agents/`, `skills/`, `hooks/`) must be at the *
 - **`.claude-plugin/plugin.json`** — declares plugin identity; no component files go here
 - **`commands/`** — slash commands as markdown files; invoked as `/plugin-name:command-name`
 - **`agents/`** — subagent definitions as markdown files with YAML frontmatter specifying model and tools
-- **`building-blocks/`** — source components not yet placed into the final structure
 - **`.github/scripts/validate-plugin.js`** — Node.js script that validates the plugin structure; checks for manifest existence, valid JSON, non-empty name, and at least one populated component directory

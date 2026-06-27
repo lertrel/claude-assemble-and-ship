@@ -32,11 +32,9 @@ Trigger the code reviewer by asking Claude naturally:
 Review my recent changes.
 ```
 
-After editing any plugin file, reload without restarting:
+After editing any plugin file, restart Claude Code and re-run `claude --plugin-dir .` to pick up changes.
 
-```
-/reload-plugins
-```
+If a component invokes a bundled script, always reference it via `${CLAUDE_PLUGIN_ROOT}` rather than a hardcoded path — otherwise the plugin breaks when loaded from a different directory.
 
 ## Structure
 
